@@ -1,48 +1,45 @@
 # Certificate Transparency Plugin for Flutter
 
-A Flutter plugin to verify [Certificate Transparency](https://certificate.transparency.dev/) (CT) compliance of HTTPS connections on Android.  
-Useful for security-focused apps that want to ensure SSL/TLS certificates are logged in public CT logs.
+A Flutter plugin to verify [Certificate Transparency](https://certificate.transparency.dev/) (CT) compliance of HTTPS URLs on Android.
 
-> ⚠️ iOS is **skipped by default** since Apple handles CT internally.
+> ⚠️ On iOS, CT is skipped by default because Apple handles it internally.
 
----
+## Features
 
-## ✨ Features
+- Verify CT compliance of HTTPS URLs
+- Include or exclude specific hosts
+- View certificate logs and results
+- Android-only (API 24+)
 
-- ✅ Verify CT compliance of HTTPS URLs
-- ✅ Include or exclude specific hosts
-- ✅ View certificate logs and validation result
-- ✅ Full OkHttp + CT log integration on Android
+## Installation
 
----
-
-## 📦 Installation
-
-Add the following to your `pubspec.yaml`:
+Add to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  certificate_transparency_plugin: ^1.0.0  # Replace with latest
+  certificate_transparency_plugin: ^1.0.0  # Use the latest version
+
+
 
 Then run:
-      flutter pub get
-
-Import the plugin:
-   import 'package:certificate_transparency_plugin/certificate_transparency_plugin.dart';
+   flutter pub get
 
 
-Then use it like this:
+Usage
+ 
+import 'package:certificate_transparency_plugin/certificate_transparency_plugin.dart';
+
 final result = await CertificateTransparency.verifyUrl(
   "https://www.google.com",
   includeHosts: ["google.com"],
   excludeHosts: [],
 );
+
 print(result);
 
-
-
 Example App
-Below is a full Flutter app that checks CT status for https://www.google.com:
+
+
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
@@ -56,7 +53,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      debugShowCheckedModeBanner: false,
       home: CertificateTransparencyTestPage(),
     );
   }
@@ -65,10 +61,10 @@ class MyApp extends StatelessWidget {
 class CertificateTransparencyTestPage extends StatefulWidget {
   const CertificateTransparencyTestPage({super.key});
   @override
-  State<CertificateTransparencyTestPage> createState() => _CertificateTransparencyTestPageState();
+  State<CertificateTransparencyTestPage> createState() => _State();
 }
 
-class _CertificateTransparencyTestPageState extends State<CertificateTransparencyTestPage> {
+class _State extends State<CertificateTransparencyTestPage> {
   String result = "Tap to check";
 
   Future<void> _checkCT() async {
@@ -80,21 +76,18 @@ class _CertificateTransparencyTestPageState extends State<CertificateTransparenc
     setState(() {
       result = const JsonEncoder.withIndent('  ').convert(response);
     });
-    if (kDebugMode) {
-      print(result);
-    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Center(child: Text("CT Test"))),
+      appBar: AppBar(title: const Text("CT Test")),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(10),
               child: Text(result),
             ),
             ElevatedButton(
@@ -108,13 +101,18 @@ class _CertificateTransparencyTestPageState extends State<CertificateTransparenc
   }
 }
 
-🧩 Platform Support
-
-Platform	Support
-Android	✅ Yes (API 24+)
-iOS	🚫 Skipped
-Web	❌ Not supported
 
 
-License
-MIT License © 2025 Shubham Rai
+Platform Support
+
+| Platform | Support    |
+|----------|------------|
+| Android  | ✅ API 24+ |
+| iOS      | 🚫 Skipped |
+| Web      | ❌ No      |
+
+
+
+
+
+

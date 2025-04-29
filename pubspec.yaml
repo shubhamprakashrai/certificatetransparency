@@ -1,10 +1,11 @@
 name: certificate_transparency_plugin
 description: A plugin to check Certificate Transparency using OkHttp and CTLogger.
 version: 1.0.0
-homepage: https://example.com
+
 
 environment:
   sdk: ">=2.19.0 <4.0.0"
+  flutter: ">=1.20.0"
 
 flutter:
   plugin:
