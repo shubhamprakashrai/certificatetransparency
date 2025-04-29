@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:certificate_transparency_plugin/certificate_transparency_plugin.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -22,17 +23,18 @@ class CertificateTransparencyTestPage extends StatefulWidget {
   const CertificateTransparencyTestPage({super.key});
 
   @override
-  _CertificateTransparencyTestPageState createState() => _CertificateTransparencyTestPageState();
+  CertificateTransparencyTestPageState createState() =>
+      CertificateTransparencyTestPageState();
 }
 
-class _CertificateTransparencyTestPageState extends State<CertificateTransparencyTestPage> {
+class CertificateTransparencyTestPageState
+    extends State<CertificateTransparencyTestPage> {
   String result = "Tap to check";
   Future<void> _checkCT() async {
     final response = await CertificateTransparency.verifyUrl(
-      "https://www.google.com",
-      includeHosts: ["google.com"],
-      excludeHosts: []
-    );
+        "https://www.google.com",
+        includeHosts: ["google.com"],
+        excludeHosts: []);
     setState(() {
       result = response.toString();
     });
@@ -40,6 +42,7 @@ class _CertificateTransparencyTestPageState extends State<CertificateTransparenc
       print(const JsonEncoder.withIndent('   ').convert(result));
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
