@@ -20,15 +20,11 @@ dependencies:
   certificate_transparency_plugin: ^1.0.0  # Use the latest version
 
 
-
-Then run:
+## Then run:
    flutter pub get
 
-
-Usage
- 
+## Usage
 import 'package:certificate_transparency_plugin/certificate_transparency_plugin.dart';
-
 final result = await CertificateTransparency.verifyUrl(
   "https://www.google.com",
   includeHosts: ["google.com"],
@@ -37,9 +33,7 @@ final result = await CertificateTransparency.verifyUrl(
 
 print(result);
 
-Example App
-
-
+## Example App
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
@@ -103,7 +97,7 @@ class _State extends State<CertificateTransparencyTestPage> {
 
 
 
-Platform Support
+## Platform Support
 
 | Platform | Support    |
 |----------|------------|

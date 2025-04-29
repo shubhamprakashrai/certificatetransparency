@@ -1,6 +1,6 @@
 name: certificate_transparency_plugin
 description: A plugin to check Certificate Transparency using OkHttp and CTLogger.
-version: 1.0.1
+version: 1.0.2
 
 
 environment:
