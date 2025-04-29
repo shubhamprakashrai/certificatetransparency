@@ -1,0 +1,21 @@
+name: certificate_transparency_plugin
+description: A plugin to check Certificate Transparency using OkHttp and CTLogger.
+version: 1.0.0
+homepage: https://example.com
+
+environment:
+  sdk: ">=2.19.0 <4.0.0"
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.example.certificate_transparency_plugin
+        pluginClass: CertificateTransparencyPlugin
+
+dependencies:
+  flutter:
+    sdk: flutter
+  plugin_platform_interface: ^2.1.6 
+  # You may add any Dart-side logic here later
+
